@@ -12,7 +12,8 @@ internal class BingBongPatches
             //if (value == null) {
             //    Debug.LogWarning("MoreAscents::UnequippedItem");
             //}
-            if(value != null && value.GetItemName() == "BING BONG") {
+            //Debug.LogWarning($"MoreAscents_test::Equipped: "+value?.UIData?.itemName ?? "null");
+            if (value != null && (value?.UIData?.itemName?.ToLowerInvariant()?.Equals("bing bong") == true)) {
                 //Debug.LogWarning($"MoreAscents::Equipped");
                 heldBingBongItem = value;
             } else {
