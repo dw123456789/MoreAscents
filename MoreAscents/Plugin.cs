@@ -69,7 +69,7 @@ namespace MoreAscents
 
         private void Update() {
             GUIManagerPatches.Grasp.SinceLastGrab += Time.deltaTime;
-            
+            BingBongMechanics.BingBongUnheldFor += Time.deltaTime;
             foreach (AscentGimmick gimmick in AscentGimmickHandler.gimmicks) {
                 if (!gimmick.active) {
                     continue;
