@@ -30,7 +30,7 @@ namespace MoreAscents
 
             AscentGimmickHandler.GetBaseAscentCount();
             
-            // custom ones
+            // custom ones.
             AscentGimmickHandler.RegisterAscent<FallDamageGimmick>();
             AscentGimmickHandler.RegisterAscent<AfflictionGimmick>();
             AscentGimmickHandler.RegisterAscent<LuggageGimmick>();
