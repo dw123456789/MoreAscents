@@ -9,9 +9,8 @@ public class AirportCheckInKioskPatches
     {
         [HarmonyPrefix]
         public static void Prefix(int ascent) {
-            AscentData.AscentInstanceData data = GUIManager.instance.boardingPass.ascentData.ascents[ascent + 1];
             AscentGimmickHandler.DisableGimmicks();
-            AscentGimmickHandler.MarkGimmicksAsActive(ascent+1);
+            AscentGimmickHandler.MarkGimmicksAsActive(ascent+2);
         }
     }
 }

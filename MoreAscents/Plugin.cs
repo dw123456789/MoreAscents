@@ -89,7 +89,7 @@ namespace MoreAscents
             }
             
             FieldInfo info = __instance.GetType().GetField("maxAscent",BindingFlags.Instance | BindingFlags.NonPublic);
-            info.SetValue(__instance, AscentData.Instance.ascents.Count - 2);
+            info.SetValue(__instance, AscentData.Instance.ascents.Count - 3);
             Plugin.Logger.LogInfo($"Ascents capped {info.GetValue(__instance)}");
         }
     }
