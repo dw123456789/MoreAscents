@@ -124,7 +124,6 @@ public static class AscentGimmickHandler
             LocalizedText.mainTable.Add(key.ToUpperInvariant(), Enumerable.Repeat(val.ToUpperInvariant(), LocalizedText.LANGUAGE_COUNT).ToList());
         }
 
-        int ascentId = gimmick._ascentData.order - 2;
         AddIdentityTranslation(gimmick.GetTitle(),gimmick.GetTitle());
         AddIdentityTranslation($"desc_{gimmick.GetTitle()}",gimmick.GetDescription());
     }
