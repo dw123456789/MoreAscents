@@ -14,14 +14,16 @@ namespace MoreAscents
     internal class Plugin : BaseUnityPlugin
     {
         internal static new ManualLogSource Logger;
-        
+        internal static Plugin Instance;
+
         // fix an issue that causes people to break when the mod is uninstalled after beating an ascent higher than 7
         internal static ConfigEntry<int> ascentsUnlocked;
         internal static ConfigEntry<bool> ascent7Disabler;
         
         private void Awake() {
             Logger = base.Logger;
-            
+            Instance = this;
+
             ascentsUnlocked = Config.Bind("General",      // The section under which the option is shown
                 "MaxAscent",  // The key of the configuration option in the configuration file
                 0, // The default value

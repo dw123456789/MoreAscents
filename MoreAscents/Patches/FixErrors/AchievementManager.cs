@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using System;
 
 namespace MoreAscents.Patches;
 
@@ -24,7 +25,7 @@ internal static class AchievementManagerPatches
         }
     }
     
-    [HarmonyPatch(typeof(AchievementManager), nameof(AchievementManager.SetSteamStat))]
+    [HarmonyPatch(typeof(AchievementManager), nameof(AchievementManager.SetSteamStat), new Type[] { typeof(STEAMSTATTYPE), typeof(int) })]
     internal static class SetSteamStat {
         [HarmonyPrefix]
         internal static void Prefix(STEAMSTATTYPE steamStatType, ref int value) {
