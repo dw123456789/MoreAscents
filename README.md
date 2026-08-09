@@ -17,7 +17,12 @@ Adds 9 more ascents to the game for those who want to challenge themselves just 
 
   Makes you drop every item upon any fall damage, _including your backpack_
 </details>
-Ascent 9 - Big Luggage's have a chance to only contain one item.<br>
-Ascent 10 - You're more vulnerable to everything but Injuries, Hunger and Weight.<br>
+Ascent 9 - You're more vulnerable to everything but Injuries, Hunger and Weight.<br>
+Ascent 10 - Big Luggage's have a chance to only contain one item.<br>
 Ascent 11 - Helping people up makes you drowsy.<br>
-Ascent 12 - No more Revive Statues.<br> <br>
+Ascent 12 - No more Revive Statues.<br><br>
+
+Chaos 1 - Passing out instantly turns you into a skeleton.<br>
+Chaos 2 - Campfires are extremely hot.<br>
+Chaos 3 - The sun is very hot. Don't get a heatstroke.<br>
+Chaos 4 - Bing Bong calls upon an evil force if not given attention.<br><br>
