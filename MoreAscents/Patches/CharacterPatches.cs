@@ -73,9 +73,9 @@ public class CharacterPatches {
         public static void Prefix(CharacterAfflictions __instance, ref float amount, CharacterAfflictions.STATUSTYPE statusType) {
             float totalMultiplier = 1f;
             foreach (AscentGimmick gimmick in AscentGimmickHandler.gimmicks) {
-                if (!gimmick.active)
-                    continue;
-                totalMultiplier += gimmick.AfflictionMultiplier(__instance, statusType, amount);
+                if (gimmick.active) {
+                    totalMultiplier += gimmick.AfflictionMultiplier(__instance, statusType, amount);
+                }
             }
             amount *= totalMultiplier;
         }
@@ -87,9 +87,9 @@ public class CharacterPatches {
 
             if (CheckFallDamage.InFallDamage && statusType == CharacterAfflictions.STATUSTYPE.Injury) {
                 foreach (AscentGimmick gimmick in AscentGimmickHandler.gimmicks) {
-                    if (!gimmick.active)
-                        continue;
-                    gimmick.OnCharacterFall(__instance.character);
+                    if (gimmick.active) {
+                        gimmick.OnCharacterFall(__instance.character);
+                    }
                 }
             }
         }
