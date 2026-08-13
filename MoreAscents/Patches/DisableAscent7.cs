@@ -14,7 +14,7 @@ internal class DisableAscent7
         [HarmonyPostfix]
         public static void Postfix(ref bool __result)
         {
-            if (!MoreAscents.Plugin.ascent7Disabler.Value)
+            if (!MoreAscents.Plugin.ascent13Disabler.Value)
                 return;
             __result = true;
         }

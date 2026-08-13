@@ -7,7 +7,7 @@ namespace MoreAscents;
 public class SkeletonGimmick : AscentGimmick
 {
     public override string GetDescription() {
-        return "Passing out instantly turns you into a skeleton.";
+        return "Going unconscious is instant death.";
     }
 
     public override string GetTitle() {

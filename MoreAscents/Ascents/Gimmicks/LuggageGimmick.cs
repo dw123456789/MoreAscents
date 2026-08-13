@@ -6,7 +6,7 @@ namespace MoreAscents;
 public class LuggageGimmick : AscentGimmick
 {
     public override string GetTitle() {
-        return "Ascent 10";
+        return "Ascent 11";
     }
     
     public override string GetDescription()

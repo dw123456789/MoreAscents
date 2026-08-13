@@ -5,7 +5,7 @@ namespace MoreAscents;
 public class FallDamageGimmick : AscentGimmick
 {
     public override string GetTitle() {
-        return "Ascent 8";
+        return "Ascent 9";
     }
     
     public override string GetDescription()

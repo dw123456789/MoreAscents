@@ -7,7 +7,7 @@ namespace MoreAscents;
 public class OccultStatueGimmick : AscentGimmick
 {
     public override string GetTitle() {
-        return "Ascent 12";
+        return "Ascent 13";
     }
     
     public override string GetDescription() {
@@ -17,7 +17,7 @@ public class OccultStatueGimmick : AscentGimmick
     List<Spawner> despawnQueue;
     readonly object despawnQueue_lockObj = new object();
     public override void RespawnChestExisted(Spawner chest) {
-        if (MoreAscents.Plugin.ascent7Disabler.Value)
+        if (MoreAscents.Plugin.ascent13Disabler.Value)
             return;
         lock (despawnQueue_lockObj) {
             if (despawnQueue == null) { // create a coroutine to remove the statues later on.

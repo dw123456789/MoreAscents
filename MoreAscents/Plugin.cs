@@ -18,7 +18,7 @@ namespace MoreAscents
 
         // fix an issue that causes people to break when the mod is uninstalled after beating an ascent higher than 7
         internal static ConfigEntry<int> ascentsUnlocked;
-        internal static ConfigEntry<bool> ascent7Disabler;
+        internal static ConfigEntry<bool> ascent13Disabler;
         
         private void Awake() {
             Logger = base.Logger;
@@ -28,7 +28,7 @@ namespace MoreAscents
                 "MaxAscent",  // The key of the configuration option in the configuration file
                 0, // The default value
                 ""); // Description of the option to show in the config file
-            ascent7Disabler = Config.Bind("General", "Ascent 7/12 Disabler", false, "Disables ascent 7 and 12.");
+            ascent13Disabler = Config.Bind("General", "Ascent 13 Disabler", false, "Disables ascent 13.");
 
             AscentGimmickHandler.GetBaseAscentCount();
             
