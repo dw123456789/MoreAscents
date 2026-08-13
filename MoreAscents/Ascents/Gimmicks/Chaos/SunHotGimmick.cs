@@ -5,7 +5,7 @@ namespace MoreAscents;
 
 public class SunHotGimmick : AscentGimmick {
     public override string GetDescription() {
-        return "The sun is very hot, don't get heatstroke.";
+        return "The sun is very hot, don't get a heatstroke.";
     }
 
     public override string GetTitle() {
