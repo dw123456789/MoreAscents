@@ -1,16 +1,13 @@
 ﻿using HarmonyLib;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace MoreAscents.Patches;
 
-public class GUIManagerPatches
-{
+public class GUIManagerPatches {
     [HarmonyPatch(typeof(GUIManager), "Grasp")]
     public static class Grasp {
         // bandaid asf but whatever man
         public static float SinceLastGrab = 0;
-        
+
         [HarmonyPrefix]
         public static void Prefix() {
             if (!CharacterPatches.Reach.character.IsLocal) {
@@ -23,9 +20,9 @@ public class GUIManagerPatches
             }
 
             SinceLastGrab = 0f;
-            
+
             Plugin.Logger.LogInfo("success");
-            
+
             foreach (AscentGimmick gimmick in AscentGimmickHandler.gimmicks) {
                 if (!gimmick.active)
                     continue;

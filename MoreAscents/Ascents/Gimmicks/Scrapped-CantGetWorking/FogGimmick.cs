@@ -1,11 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Reflection;
-using UnityEngine;
+﻿namespace MoreAscents;
 
-namespace MoreAscents;
-
-public class FogGimmick : AscentGimmick
-{
+public class FogGimmick : AscentGimmick {
     public override string GetDescription() {
         return "The fog starts earlier and moves faster.";
     }
@@ -17,7 +12,7 @@ public class FogGimmick : AscentGimmick
     public override void OnFogInitNewSphere(OrbFogHandler fog) {
         fog.currentStartForward = 0;
         fog.currentStartHeight = 0;
-        
+
         fog.speed *= 2;
         fog.maxWaitTime /= 10;
         Plugin.Logger.LogWarning("patched fog AGAIN");

@@ -2,8 +2,7 @@
 
 namespace MoreAscents.Patches;
 
-internal class BingBongPatches
-{
+internal class BingBongPatches {
     internal static Item heldBingBongItem = null;
     [HarmonyPatch(typeof(CharacterData), nameof(CharacterData.currentItem), MethodType.Setter)]
     internal static class Patch {
@@ -17,7 +16,7 @@ internal class BingBongPatches
                 //Debug.LogWarning($"MoreAscents::Equipped");
                 heldBingBongItem = value;
             } else {
-                heldBingBongItem = null; 
+                heldBingBongItem = null;
             }
         }
     }

@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Reflection;
-using UnityEngine;
+﻿using System.Reflection;
 
 namespace MoreAscents;
 
-public class SkeletonGimmick : AscentGimmick
-{
+public class SkeletonGimmick : AscentGimmick {
     public override string GetDescription() {
         return "Going unconscious is instant death.";
     }
@@ -18,7 +15,7 @@ public class SkeletonGimmick : AscentGimmick
         if (!character.IsLocal) {
             return;
         }
-        MethodInfo info = character.GetType().GetMethod("DieInstantly",BindingFlags.Instance | BindingFlags.NonPublic);
-        info.Invoke(character,[]);
+        MethodInfo info = character.GetType().GetMethod("DieInstantly", BindingFlags.Instance | BindingFlags.NonPublic);
+        info.Invoke(character, []);
     }
 }

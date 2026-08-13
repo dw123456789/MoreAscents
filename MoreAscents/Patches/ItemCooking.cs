@@ -1,11 +1,8 @@
 ﻿using HarmonyLib;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace MoreAscents.Patches;
 
-public class ItemCookingPatches
-{
+public class ItemCookingPatches {
     [HarmonyPatch(typeof(ItemCooking), "FinishCookingRPC")]
     public static class FinishCookingRPC {
         [HarmonyPrefix]

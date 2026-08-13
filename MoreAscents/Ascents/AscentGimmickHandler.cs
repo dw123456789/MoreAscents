@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Annotations;
-using MoreAscents.Patches;
-using UnityEngine;
 
 namespace MoreAscents;
 
-public static class AscentGimmickHandler
-{
+public static class AscentGimmickHandler {
     internal static readonly List<AscentGimmick> gimmicks = new();
 
     internal static void MarkGimmicksAsActive(int ascentIndex) {
@@ -32,7 +27,7 @@ public static class AscentGimmickHandler
         }
         return null;
     }
-    
+
     internal static void DisableGimmicks() {
         foreach (AscentGimmick gimmick in gimmicks) {
             gimmick.active = false;
@@ -43,14 +38,14 @@ public static class AscentGimmickHandler
         get;
         private set;
     } = -1;
-    
+
     internal static int GetBaseAscentCount() {
         if (BaseAscents == -1) {
             BaseAscents = AscentData.Instance.ascents.Count;
         }
         return BaseAscents;
     }
-    
+
     private static readonly List<AscentData.AscentInstanceData> pendingDatas = [];
     private static bool HasInitialized = false;
 
@@ -61,40 +56,39 @@ public static class AscentGimmickHandler
         }
 
         HasInitialized = true;
-        
+
         AscentData ascentData = AscentData.Instance;
 
         List<AscentData.AscentInstanceData> originalDatas = ascentData.ascents;
         List<AscentData.AscentInstanceData> newDatas = [];
-        
+
         Plugin.Logger.LogInfo($"initializing with ({pendingDatas.Count} custom) and ({originalDatas.Count} base)");
-        
+
         foreach (AscentData.AscentInstanceData data in originalDatas) {
-            HotLoadAscentInstanceData(newDatas,data);
+            HotLoadAscentInstanceData(newDatas, data);
         }
-        
+
         // customs
         foreach (AscentData.AscentInstanceData data in pendingDatas) {
-            HotLoadAscentInstanceData(newDatas,data);
+            HotLoadAscentInstanceData(newDatas, data);
         }
 
         ascentData.ascents = newDatas;
     }
 
-    private static void HotLoadAscentInstanceData(List<AscentData.AscentInstanceData> targetList,AscentData.AscentInstanceData data) {
+    private static void HotLoadAscentInstanceData(List<AscentData.AscentInstanceData> targetList, AscentData.AscentInstanceData data) {
         if (data.titleReward == "") {
             data.titleReward = $"{data.title} Conqueror";
         }
         targetList.Add(data);
     }
-    
-    public static void RegisterAscent<T>() where T : AscentGimmick
-    {
+
+    public static void RegisterAscent<T>() where T : AscentGimmick {
         AscentGimmick gimmick = Activator.CreateInstance<T>();
         /*if (gimmick.GetTitle() == "") {
             newData.title = $"Ascent {7 + gimmicks.Count+1}";
         }*/
-        
+
         AscentData.AscentInstanceData newData = new() {
             title = gimmick.GetTitle(),
             description = gimmick.GetDescription(),
@@ -102,7 +96,7 @@ public static class AscentGimmickHandler
             color = gimmick.GetColor(),
             sashSprite = AscentData.Instance.ascents[0].sashSprite,
         };
-        
+
         gimmick._ascentData = new AscentStruct {
             data = newData,
             order = 9 + (gimmicks.Count + 1),
@@ -110,7 +104,7 @@ public static class AscentGimmickHandler
         gimmicks.Add(gimmick);
 
         if (HasInitialized) {
-            HotLoadAscentInstanceData(AscentData.Instance.ascents,newData);
+            HotLoadAscentInstanceData(AscentData.Instance.ascents, newData);
             Plugin.Logger.LogInfo($"Hot loaded {newData.title}!");
             return;
         }
@@ -124,7 +118,7 @@ public static class AscentGimmickHandler
             LocalizedText.mainTable.Add(key.ToUpperInvariant(), Enumerable.Repeat(val.ToUpperInvariant(), LocalizedText.LANGUAGE_COUNT).ToList());
         }
 
-        AddIdentityTranslation(gimmick.GetTitle(),gimmick.GetTitle());
-        AddIdentityTranslation($"desc_{gimmick.GetTitle()}",gimmick.GetDescription());
+        AddIdentityTranslation(gimmick.GetTitle(), gimmick.GetTitle());
+        AddIdentityTranslation($"desc_{gimmick.GetTitle()}", gimmick.GetDescription());
     }
 }

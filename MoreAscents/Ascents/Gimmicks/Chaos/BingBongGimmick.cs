@@ -8,13 +8,13 @@ public class BingBongGimmick : AscentGimmick {
     public override string GetDescription() {
         return "Bing Bong calls upon an evil force if not given attention.";
     }
-    
+
     public override string GetTitle() {
         return "Chaos 4";
     }
 
     private static float SinceLastShake = 0;
-    
+
     public override void Update() {
         var dt = Time.deltaTime;
         SinceLastShake += dt;

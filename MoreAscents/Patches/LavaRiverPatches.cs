@@ -1,14 +1,10 @@
 ﻿using HarmonyLib;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace MoreAscents.Patches;
 
-public class LavaRiverPatches
-{
+public class LavaRiverPatches {
     [HarmonyPatch(typeof(Lava), "Start")]
-    public static class Start
-    {
+    public static class Start {
         [HarmonyPrefix]
         public static void Prefix(Lava __instance) {
             foreach (AscentGimmick gimmick in AscentGimmickHandler.gimmicks) {

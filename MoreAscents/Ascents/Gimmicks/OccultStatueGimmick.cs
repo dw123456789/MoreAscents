@@ -4,18 +4,17 @@ using UnityEngine;
 
 namespace MoreAscents;
 
-public class OccultStatueGimmick : AscentGimmick
-{
+public class OccultStatueGimmick : AscentGimmick {
     public override string GetTitle() {
         return "Ascent 13";
     }
-    
+
     public override string GetDescription() {
         return "No more Revive Statues.";
     }
 
-    List<Spawner> despawnQueue;
-    readonly object despawnQueue_lockObj = new object();
+    private List<Spawner> despawnQueue;
+    private readonly object despawnQueue_lockObj = new object();
     public override void RespawnChestExisted(Spawner chest) {
         if (MoreAscents.Plugin.ascent13Disabler.Value)
             return;
@@ -25,7 +24,7 @@ public class OccultStatueGimmick : AscentGimmick
                 despawnQueue = new List<Spawner>();
                 Plugin.Instance.StartCoroutine(DespawnStatusDelayed());
             }
-            despawnQueue.Add(chest); 
+            despawnQueue.Add(chest);
         }
     }
 
@@ -36,7 +35,7 @@ public class OccultStatueGimmick : AscentGimmick
                 foreach (var item in despawnQueue) {
                     item.gameObject.SetActive(false);
                 }
-                despawnQueue = null; 
+                despawnQueue = null;
             }
         }
     }

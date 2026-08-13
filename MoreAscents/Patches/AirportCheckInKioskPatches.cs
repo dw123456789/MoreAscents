@@ -2,15 +2,13 @@
 
 namespace MoreAscents.Patches;
 
-public class AirportCheckInKioskPatches
-{
+public class AirportCheckInKioskPatches {
     [HarmonyPatch(typeof(AirportCheckInKiosk), nameof(AirportCheckInKiosk.BeginIslandLoadRPC))]
-    public static class LoadIslandMaster
-    {
+    public static class LoadIslandMaster {
         [HarmonyPrefix]
         public static void Prefix(int ascent) {
             AscentGimmickHandler.DisableGimmicks();
-            AscentGimmickHandler.MarkGimmicksAsActive(ascent+2);
+            AscentGimmickHandler.MarkGimmicksAsActive(ascent + 2);
         }
     }
 }
