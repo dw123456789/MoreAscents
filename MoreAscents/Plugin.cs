@@ -7,6 +7,10 @@ using HarmonyLib;
 using MoreAscents.Patches;
 using Zorro.Core;
 using Logger = UnityEngine.Logger;
+using System.Collections.Generic;
+using System.Reflection.Emit;
+using System;
+using System.Linq;
 
 namespace MoreAscents
 {
@@ -82,17 +86,35 @@ namespace MoreAscents
     }
 
     [HarmonyPatch(typeof(BoardingPass), "UpdateAscent")]
-    internal static class boarding_initilize_patch
+    internal static class BoardingInitilizePatch
     {
         internal static void Prefix(BoardingPass __instance)
         {
             if (Input.GetKey(KeyCode.L)) {
-                Singleton<AchievementManager>.Instance.SetSteamStat(STEAMSTATTYPE.MaxAscent, 155);
+                Singleton<AchievementManager>.Instance.SetSteamStat(STEAMSTATTYPE.MaxAscent, AscentData.Instance.ascents.Count - 3);
             }
-            
-            FieldInfo info = __instance.GetType().GetField("maxAscent",BindingFlags.Instance | BindingFlags.NonPublic);
-            info.SetValue(__instance, AscentData.Instance.ascents.Count - 3);
-            Plugin.Logger.LogInfo($"Ascents capped {info.GetValue(__instance)}");
+        }
+
+        [HarmonyTranspiler]
+        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> inputIL) { // changes the max ascent to not be 8 but instead chaos4
+            bool found = false;
+            var codes = new List<CodeInstruction>(inputIL);
+            for (int i = 0; i < codes.Count-4; i++) {
+                if (codes[i].opcode == OpCodes.Ldc_I4_8 && 
+                    codes[i+1].opcode == OpCodes.Ldarg_0 &&
+                    codes[i + 3].opcode == OpCodes.Call) { // this is the call to Mathf.Min(8, maxUnlockedAscent) in BoardingPass#UpdateAscent
+                    if (found) {
+                        throw new Exception("already patched boardingpass!! why are there 2+ calls of this shape?");
+                    }
+                    codes[i] = new CodeInstruction(OpCodes.Ldc_I4, AscentData.Instance.ascents.Count - 3);
+                    found = true;
+                }
+            }
+            if (!found) {
+                throw new Exception("Couldnt apply boardingpass patch :(");
+            }
+
+            return codes.AsEnumerable();
         }
     }
 }
