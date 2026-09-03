@@ -3,7 +3,7 @@
 namespace MoreAscents.Patches;
 
 public class ItemCookingPatches {
-    [HarmonyPatch(typeof(ItemCooking), "FinishCookingRPC")]
+    [HarmonyPatch(typeof(ItemCooking), "FinishCookingImpl")]
     public static class FinishCookingRPC {
         [HarmonyPrefix]
         public static void Prefix(ItemCooking __instance) {
